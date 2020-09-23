@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<link rel="stylesheet" type="text/css" href="css/styles.css" />-->
+    <link href="styles.css" rel="stylesheet" />
+    <!-- Bitcoin Refresh Mechanism -->
+    <title>CountDown Clock & Bitcoin</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- form -->
+        <form class="form">
+            <!-- countdown time input field -->
+            <input type="number" min="1" class="time-input" placeholder="Enter Countdown">
+            <!-- options -->
+            <select name="format">
+                <option value="hours">Hours</option>
+                <option value="minutes">Minutes</option>
+                <option value="seconds">Seconds</option>
+            </select>
+            <!-- submit button or set button -->
+            <button type="submit" class="set-btn">SET</button>
+            <button type="submit" class="update-btn">UPDATE LAST BITCOIN DATA</button>
+        </form>
+        <!-- countdown text -->
+        <p class="countdown">00 : 00 : 00</p>
+
+        <!-- buttons -->
+        <div class="buttons">
+            <button class="stop-btn" disabled>STOP</button>
+            <button class="reset-btn" disabled>RESET</button>
+        </div>
+    </div>
+
+    <!--<script type="text/javascript" src="js/script.js"></script>-->
+    <script src="script.js"></script>
+
+    <img id="logo" src="https://cdn.pixabay.com/photo/2020/03/28/09/41/dollar-4976302_1280.png" />
+    <div id="data"/> 
+    <script type="text/javascript">
+        var xmlhttp = new XMLHttpRequest();
+        var url = "https://api.coindesk.com/v1/bpi/currentprice.json"; //json linkten veriler alınması için link
+
+        xmlhttp.onreadystatechange = function () {
+
+            if (this.readyState == 4 && this.status == 200) {
+                var json = JSON.parse(this.responseText);
+                parseJson(json);
+
+            }
+        };
+
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+
+        function parseJson(json) {
+
+            var time = "<b>Last Updated : " + json["time"]["updated"] + "</b>";
+            var usdValue = "1 BTC equals to $" + json["bpi"]["USD"]["rate"];
+            var gbpValue = "1 BTC equals to &pound;" + json["bpi"]["GBP"]["rate"];
+            var euroValue = "1 BTC equals to &euro;" + json["bpi"]["EUR"]["rate"];
+
+            document.getElementById("data").innerHTML =
+                time + "<br /><br />" + usdValue + "<br />" + gbpValue + "<br />" + euroValue;
+        }
+    </script>
+
+    <!-- Refresh -->
+   
+</body>
+
+</html>
