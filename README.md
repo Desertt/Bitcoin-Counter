@@ -1,0 +1,2 @@
+## IVelC2Y7nnczCSEf project
+###### I Builded a web app that does mainly two things, firstly create a counter that counts down from hours in which has hour, minute and second components in which the user can increment or decrement any of those components by using icons on the dashboard as much as necessary, secondly I grab Bitcoin prices from a public API given below that displays the prices in USD, GBP and EUR and also asynchronously refresh the prices in realtime, displays results in a same web interface.I added a button that allows you to get the latest data from bitcoin.
